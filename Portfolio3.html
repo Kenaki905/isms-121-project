@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        color: #1c1c25;
+        background-color: #f5f2fa;
+        overflow-x: hidden;
+      }
+      header {
+        background: #050205;
+        color: #dce6f0;
+        padding: 20px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        z-index: 1;
+        position: relative;
+        animation: fadeIn 2s ease-in-out;
+      }
+      .header-shape {
+        position: absolute;
+        top: -50px;
+        left: -50px;
+        width: 200px;
+        height: 200px;
+        background: #4e325c;
+        border-radius: 50%;
+        animation: float 5s infinite ease-in-out;
+        z-index: 0;
+      }
+      .header-shape2 {
+        position: absolute;
+        bottom: -50px;
+        right: -50px;
+        width: 150px;
+        height: 150px;
+        background: #2e2b4d;
+        border-radius: 60%;
+        animation: float 8s infinite linear;
+        z-index: 0;
+      }
+      nav {
+        background: #140919;
+        color: rgb(235, 227, 227);
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      nav a::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 2px;
+        background: #8c15e7;
+        transition: width 0.3s;
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+      }
+      nav a:hover {
+        color: #4e325c;
+      }
+      nav a:hover::after {
+        width: 100%;
+      }
+      section {
+        padding: 20px;
+        max-width: 900px;
+        margin: 20px auto;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeInUp 1s ease-in-out forwards;
+      }
+      section#home {
+        text-align: center;
+        padding: 20px 10px;
+        word-break: break-word;
+      }
+      section:nth-of-type(2) { animation-delay: 0.2s; }
+      section:nth-of-type(3) { animation-delay: 0.4s; }
+      section:nth-of-type(4) { animation-delay: 0.6s; }
+      section h2 {
+        color: #4b0082;
+        border-bottom: 2px solid #8c15e7;
+        padding-bottom: 5px;
+        margin-bottom: 20px;
+      }
+      .skills ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+      .skills ul li {
+        background: #cec3c3;
+        margin: 0;
+        padding: 10px 18px;
+        border-left: 5px solid #4b0082;
+        border-radius: 6px;
+        transition: transform 0.3s, background 0.3s;
+        cursor: pointer;
+        font-size: 1rem;
+        box-shadow: 0 2px 8px rgba(75,0,130,0.07);
+        position: relative;
+        overflow: hidden;
+      }
+      .skills ul li:hover {
+        transform: scale(1.08) rotate(-2deg);
+        background: #e7d8f7;
+        box-shadow: 0 4px 16px rgba(75,0,130,0.13);
+        animation: bounce 0.5s;
+      }
+      #skill-detail {
+        margin-top: 15px;
+        color: #4b0082;
+        font-size: 1rem;
+        min-height: 24px;
+        text-align: center;
+        transition: opacity 0.4s;
+        opacity: 1;
+      }
+      .profile-img {
+        display: block;
+        margin: 0 auto 16px auto;
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid #381650;
+        box-shadow: 0 2px 8px rgba(9, 0, 130, 0.12);
+        animation: pulse 2s infinite;
+        transition: transform 0.3s;
+      }
+      .profile-img:hover {
+        animation: rotate 1s infinite;
+        transform: scale(1.08);
+        box-shadow: 0 6px 18px rgba(75,0,130,0.18);
+      }
+      .animated-text {
+        display: inline-block;
+        color: #4b0082;
+        font-weight: bold;
+        animation: colorChange 2s infinite alternate;
+      }
+      @media (max-width: 768px) {
+        nav {
+          flex-direction: column;
+        }
+        nav a {
+          margin: 10px 0;
+        }
+        section {
+          padding: 15px;
+        }
+        .skills ul {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+      @media (max-width: 480px) {
+        header h1 {
+          font-size: 1.8rem;
+        }
+        nav a {
+          font-size: 0.9rem;
+        }
+        section {
+          padding: 10px;
+        }
+      }
+      footer {
+        background: #0f0505;
+        color: rgb(235, 223, 223);
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 20px;
+      }
+      footer a {
+        color: #ff4500;
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+      }
+      @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+      }
+      @keyframes bounce {
+        0% { transform: scale(1); }
+        30% { transform: scale(1.15); }
+        50% { transform: scale(0.95); }
+        70% { transform: scale(1.05); }
+        100% { transform: scale(1.08) rotate(-2deg);}
+      }
+      @keyframes colorChange {
+        0% { color: #4b0082; }
+        50% { color: #ff4500; }
+        100% { color: #381650; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><span class="animated-text" id="animatedTitle">My Portfolio</span></h1>
+      <div class="header-shape"></div>
+      <div class="header-shape2"></div>
+    </header>
+    <nav>
+      <a href="#home" onclick="showHome()">Home</a>
+      <a href="#about" onclick="showAbout()">About</a>
+      <a href="#skills" onclick="showSkills()">Skills</a>
+      <a href="#contact" onclick="showContact()">Contact</a>
+    </nav>
+    <section id="home">
+      <h2>Home</h2>
+      <img src="profile.jpg" class="profile-img" alt="Fatoye Richard">
+      <p>
+        Welcome to my professional portfolio! Here, you can learn more about me, my skills, and how to get in touch.
+        <br>
+        <span class="animated-text" id="welcomeText"></span>
+      </p>
+    </section>
+    <section id="about" style="display: none;">
+      <h2>About</h2>
+      <p>Hello! My name is Fatoye Richard, and I am a Web-Designer with a passion for creating innovative solutions. I specialize in web development, focusing on building responsive and user-friendly websites. I enjoy learning new technologies and collaborating with teams to solve complex problems.</p>
+      <p>In my free time, I love exploring new programming frameworks, contributing to open-source projects, and mentoring aspiring developers. This portfolio showcases my skills, projects, and achievements.</p>
+    </section>
+    <section id="skills" class="skills" style="display: none;">
+      <h2>Skills</h2>
+      <ul>
+        <li onclick="showHtmlCss()">HTML &amp; CSS</li>
+        <li onclick="showJavascript()">JavaScript</li>
+        <li onclick="showResponsive()">Responsive Web Design</li>
+        <li onclick="showEditing()">Editing</li>
+        <li onclick="showAnimations()">Animations</li>
+      </ul>
+      <div id="skill-detail"></div>
+      <p>These skills enable me to create visually appealing and functional websites that provide a great user experience. I am always eager to learn new technologies and improve my skill set.</p>
+    </section>
+    <section id="contact" style="display: none;">
+      <h2>Contact</h2>
+      <p>If you'd like to get in touch, feel free to reach out via email or connect with me on social media.</p>
+      <p>Email: <a href="mailto:fatoyerichard113@gmail.com">fatoyerichard113@example.com</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/fatoyerichard" target="_blank">linkedin.com/in/fatoyerichard</a></p>
+    </section>
+    <footer>
+      &copy; 2025 Fatoye Richard. All rights reserved.
+    </footer>
+    <script>
+      // Section navigation
+      function showHome() {
+        hideAllSections();
+        document.getElementById('home').style.display = 'block';
+      }
+      function showAbout() {
+        hideAllSections();
+        document.getElementById('about').style.display = 'block';
+      }
+      function showSkills() {
+        hideAllSections();
+        document.getElementById('skills').style.display = 'block';
+      }
+      function showContact() {
+        hideAllSections();
+        document.getElementById('contact').style.display = 'block';
+      }
+      function hideAllSections() {
+        document.getElementById('home').style.display = 'none';
+        document.getElementById('about').style.display = 'none';
+        document.getElementById('skills').style.display = 'none';
+        document.getElementById('contact').style.display = 'none';
+      }
+
+      // Skill detail functions with animation
+      function animateSkillDetail(text) {
+        const detail = document.getElementById('skill-detail');
+        detail.style.opacity = 0;
+        setTimeout(() => {
+          detail.textContent = text;
+          detail.style.opacity = 1;
+        }, 250);
+      }
+      function showHtmlCss() {
+        animateSkillDetail("HTML & CSS: I use these core technologies to build and style modern, accessible, and responsive web pages.");
+      }
+      function showJavascript() {
+        animateSkillDetail("JavaScript: I create interactive and dynamic user experiences using modern JavaScript techniques.");
+      }
+      function showResponsive() {
+        animateSkillDetail("Responsive Web Design: I ensure websites look great and function well on all devices and screen sizes.");
+      }
+      function showEditing() {
+        animateSkillDetail("Editing: I have experience editing content, images, and code for clarity, accuracy, and visual appeal.");
+      }
+      function showAnimations() {
+        animateSkillDetail("Animations: I use CSS and JavaScript to add smooth, engaging animations to enhance user experience.");
+      }
+
+      // Animated typing effect for welcome text
+      const welcomeText = "Let's build something amazing together!";
+      let i = 0;
+      function typeWelcome() {
+        if (i < welcomeText.length) {
+          document.getElementById("welcomeText").textContent += welcomeText.charAt(i);
+          i++;
+          setTimeout(typeWelcome, 60);
+        }
+      }
+
+      // Animated title color cycling (JS-driven for extra effect)
+      const titleColors = ["#4b0082", "#ff4500", "#381650", "#8c15e7"];
+      let colorIdx = 0;
+      setInterval(() => {
+        document.getElementById("animatedTitle").style.color = titleColors[colorIdx];
+        colorIdx = (colorIdx + 1) % titleColors.length;
+      }, 1200);
+
+      // Show the Home section by default and start animations
+      showHome();
+      typeWelcome();
+    </script>
+  </body>
+</html>
